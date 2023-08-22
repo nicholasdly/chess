@@ -1,5 +1,7 @@
+use chess;
+
 #[test]
 fn example_test() {
-    let x = "Hello, world!";
-    assert_eq!(x, "Hello, world!");
+    let x = chess::add(2, 2);
+    assert_eq!(x, 4);
 }
