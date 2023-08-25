@@ -2,6 +2,7 @@ pub mod bitboards;
 pub mod fen;
 
 /// Represents a color of a chess piece.
+#[derive(Debug, PartialEq)]
 pub enum Color { White, Black }
 
 /// Represents a type of chess piece.
@@ -45,6 +46,10 @@ mod tests {
     #[test]
     fn test_start_pos() {
         let board = Board::start_pos();
+
+        assert_eq!(board.active_color, Color::White);
+        assert_eq!(board.halfmoves, 0);
+        assert_eq!(board.fullmoves, 1);
 
         assert_eq!(board.bitboards[Color::White as usize][Piece::Pawn as usize], 0xFF00);
         assert_eq!(board.bitboards[Color::White as usize][Piece::Knight as usize], 0x42);
