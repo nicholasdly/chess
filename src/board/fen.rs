@@ -126,7 +126,7 @@ fn parse_piece_placement(piece_placement: &str) -> Result<Bitboards, FenError> {
             };
             bitboards[color as usize][piece as usize] |= 1 << i;
             i += 1;
-        } else if c.is_digit(10) {
+        } else if c.is_ascii_digit() {
             i += c.to_digit(10).unwrap() as u8;
         } else {
             return Err(FenError::UnrecognizedSquare { square: c })
@@ -144,7 +144,7 @@ fn parse_active_color(active_color: &str) -> Result<Color, FenError> {
     match active_color {
         "w" => Ok(Color::White),
         "b" => Ok(Color::Black),
-        _ => return Err(FenError::UnrecognizedActiveColor { color: active_color.to_string() })
+        _ => Err(FenError::UnrecognizedActiveColor { color: active_color.to_string() })
     }
 }
 
@@ -162,7 +162,7 @@ fn parse_enpassant_targets(enpassant_targets: &str) {
 fn parse_move_count(move_count: &str) -> Result<u16, FenError> {
     match move_count.parse() {
         Ok(val) => Ok(val),
-        _ => return Err(FenError::InvalidMoveField { moves: move_count.to_string() })
+        _ => Err(FenError::InvalidMoveField { moves: move_count.to_string() })
     }
 }
 
