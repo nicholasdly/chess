@@ -3,5 +3,12 @@
 version = 4
 
 [[package]]
-name = "chess"
+name = "engine"
+version = "0.1.0"
+dependencies = [
+ "library",
+]
+
+[[package]]
+name = "library"
 version = "0.1.0"
