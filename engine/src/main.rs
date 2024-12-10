@@ -1,8 +1,7 @@
-use library;
+use library::board;
 
 fn main() {
-    let a = 10;
-    let b = 20;
+    let board = board::Board::new();
 
-    println!("Hello, world! {a} plus {b} is {}!", library::add(a, b));
+    println!("{board}");
 }
